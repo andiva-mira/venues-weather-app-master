@@ -3,10 +3,13 @@
 $theme: Null;
 
 // default color theme
-$primaryA: #63396e; /*rgb(99,57,110)*/
-$primaryB: #cd5c5c; /*rgb(205, 92, 92)*/
+$primaryA: #63396e;
+/*rgb(99,57,110)*/
+$primaryB: #cd5c5c;
+/*rgb(205, 92, 92)*/
 $secondaryB: #380618;
-$btnBg: #B21551; /*rgb(178, 21, 81)*/
+$btnBg: #B21551;
+/*rgb(178, 21, 81)*/
 $venueBg: #6C2B45;
 $weatherBg: #89313d;
 $venueShadow: #B88197;
@@ -19,17 +22,19 @@ $titleColor: #fff;
 $textColor: #4a4a4a;
 
 
-@if $theme == Coffee {
+@if $theme ==Coffee {
 	$primaryA: #857c9c;
 	$primaryB: #726457;
 	$btnBg: #B21551;
 
-}  @else if $theme == Afternoon {
+}
+
+@else if $theme ==Afternoon {
 	$primaryA: #323A4C;
 	$primaryB: #858C78;
 	$btnBg: #B21551;
 
-} 
+}
 
 // fontface
 $fontSize: 1rem;
@@ -37,13 +42,14 @@ $fontHeading: 'Montserrat', sans-serif;
 $fontContent: 'Work Sans', sans-serif;
 
 // media query breakpoints map
-$breakpoints: ( 
+$breakpoints: (
 	xxsmall: 480px,
 	xsmall: 640px,
 	small: 768px,
 	medium: 992px,
 	lmedium: 1024px,
-	large: 1200px
+	large: 1200px,
+	xlarge: 1366px
 );
 
 // media query  height breakpoints map and orientation landscape
@@ -55,7 +61,7 @@ $heights: (
 
 
 // media query HI RES breakpoints map
-$hrbreakpoints: ( 
+$hrbreakpoints: (
 	xsmall: 640px,
 	small: 768px,
 	medium: 992px,
@@ -72,5 +78,4 @@ $hrwidths: (
 	lmedium: 1024px,
 	large: 1200px,
 	xlarge: 1366px
-
 );

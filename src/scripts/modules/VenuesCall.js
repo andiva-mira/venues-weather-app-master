@@ -25,7 +25,7 @@ export function VenuesApiCall() {
 
 	// today's date
 	let date = getDate();
-	date = date.slice(0,10);
+	date = date.slice(0, 10);
 
 
 	// AJAX function - resolves to { ok: true, data } or { ok: false, message }
@@ -60,7 +60,12 @@ export function VenuesApiCall() {
 	// Render function
 	function renderVenues(venues) {
 		venues.map((venue, index) => {
-			const venueAddress = (venue.location.address) ? (`<p>${venue.location.address}</p>`) : `<p></p>`;
+			// Foursquare omits address/city/country entirely for some
+			// venues rather than returning an empty string, so guard each
+			// one instead of interpolating them straight into the markup
+			const venueAddress = venue.location.address ? `<h3>Address:</h3><p>${venue.location.address}</p>` : '';
+			const venueCity = venue.location.city ? `<p> ${venue.location.city}</p>` : '';
+			const venueCountry = venue.location.country ? `<p> ${venue.location.country}</p>` : '';
 
 			let venueContent =
 				`<div class="venue-container">
@@ -68,7 +73,7 @@ export function VenuesApiCall() {
 						<div class="venue-face venue-face--front">
 							<div class="venue-face--front---inner">
 								<h2>${venue.name}</h2>
-							 	<h3> 
+							 	<h3>
 								 	<span>Type of Attraction: </span>
 									<span>${venue.categories[0].pluralName}</span>
 								</h3>
@@ -76,10 +81,9 @@ export function VenuesApiCall() {
 						</div>
 						<div class="venue-face venue-face--back">
 							<div class="venue-face--back---inner">
-								<h3>Address:</h3>
 								${venueAddress}
-								<p> ${venue.location.city}</p>
-								<p> ${venue.location.country}</p>
+								${venueCity}
+								${venueCountry}
 							</div>
 						</div>
 					</div>
@@ -87,7 +91,9 @@ export function VenuesApiCall() {
 			$venues.innerHTML += venueContent;
 		});
 
-		$destination.innerHTML = `${venues[0].location.city}`;
+		const destinationCity = venues[0].location.city || $input.value.trim();
+		const destinationCountry = venues[0].location.country;
+		$destination.innerHTML = destinationCountry ? `${destinationCity}, ${destinationCountry}` : destinationCity;
 		$sectionTitle.style.display = "";
 	}
 

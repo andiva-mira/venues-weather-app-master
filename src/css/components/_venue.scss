@@ -25,6 +25,14 @@
 		padding: 0;
 	}
 
+	@include mq(xlarge) {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		grid-gap: 10px;
+		padding-left: 60px;
+
+	}
+
 	@include mqhr(small) {
 		padding: 0 15px;
 		width: 100%;
@@ -59,6 +67,10 @@
 		height: 230px;
 	}
 
+	@include mq(xlarge) {
+		width: 350px;
+	}
+
 	@include mqhr(small) {
 		margin: 30px auto;
 		width: 65vw;
@@ -91,6 +103,10 @@
 	@include mq(medium) {
 		width: 400px;
 		height: 230px;
+	}
+
+	@include mq(xlarge) {
+		width: 350px;
 	}
 
 	@include mqhr(small) {
@@ -133,6 +149,10 @@
 		@include mq(medium) {
 			width: 400px;
 			height: 230px;
+		}
+
+		@include mq(xlarge) {
+			width: 350px;
 		}
 
 		@include mqhr(small) {
