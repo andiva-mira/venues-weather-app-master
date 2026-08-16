@@ -1,4 +1,6 @@
-.sectiontitle  {
+.sectiontitle {
+	padding-top: 50px;
+
 	h2 {
 		font-family: $fontHeading;
 		font-size: $fontSize * 1.5;
@@ -13,17 +15,15 @@
 			margin-right: 20%;
 			margin-bottom: 10px;
 		}
-		
+
 		@include mqhr(small) {
-		    margin-right: 0;
-		    margin-bottom: 40px;
+			margin-right: 0;
+			margin-bottom: 40px;
 		}
 
 		@include mqlhr(small) {
-		    margin-right: 0;
-		    margin-bottom: 40px;
+			margin-right: 0;
+			margin-bottom: 40px;
 		}
-			}
+	}
 }
-
-

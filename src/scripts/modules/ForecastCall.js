@@ -26,6 +26,7 @@ export const ForecastApiCall = () => {
 	const $container = document.querySelector('.container');
 	const $weather = document.getElementById("weather");
 	const $location = document.getElementById('location');
+	const $sectionTitle = document.querySelector('.content-left-inner .sectiontitle');
 	const weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 	// WMO weather codes -> description/icon, see https://open-meteo.com/en/docs
@@ -65,15 +66,21 @@ export const ForecastApiCall = () => {
 	// Open-Meteo returns local ISO datetimes like "2026-08-16T06:12"
 	const formatTime = (isoDateTime) => (isoDateTime || '').split('T')[1] || '';
 
-	// AJAX function
+	// AJAX function - resolves to { ok: true, data } or { ok: false, message }
 	async function getForecast() {
-		const userInput = $input.value;
+		const userInput = $input.value.trim();
+
+		if (!userInput) {
+			return { ok: false, message: 'Please enter a location to search.' };
+		}
 
 		try {
 			const geoResponse = await fetch(`${geocodeUrl}?name=${encodeURIComponent(userInput)}&count=1&language=en&format=json`);
 			if (!geoResponse.ok) throw new Error('Geocoding request failed!');
 			const geoJson = await geoResponse.json();
-			if (!geoJson.results || !geoJson.results.length) throw new Error('Location not found!');
+			if (!geoJson.results || !geoJson.results.length) {
+				return { ok: false, message: `We couldn't find "${userInput}". Please check the spelling and try again.` };
+			}
 			const place = geoJson.results[0];
 
 			const params = new URLSearchParams({
@@ -85,27 +92,26 @@ export const ForecastApiCall = () => {
 			});
 
 			let response = await fetch(`${forecastUrl}?${params}`);
-			if (response.ok) {
-				let jsonResponse = await response.json();
-				let days = jsonResponse.daily.time.map((date, index) => ({
-					date,
-					day: {
-						condition: describeWeather(jsonResponse.daily.weathercode[index]),
-						maxtemp_c: Math.round(jsonResponse.daily.temperature_2m_max[index]),
-						mintemp_c: Math.round(jsonResponse.daily.temperature_2m_min[index])
-					},
-					astro: {
-						sunrise: formatTime(jsonResponse.daily.sunrise[index]),
-						sunset: formatTime(jsonResponse.daily.sunset[index])
-					}
-				}));
-				let location = { name: [place.name, place.admin1, place.country].filter(Boolean).join(', ') };
-				let weatherData = [days, location];
-				return weatherData;
-			}
-			throw new Error('Request failed!');
+			if (!response.ok) throw new Error('Request failed!');
+
+			let jsonResponse = await response.json();
+			let days = jsonResponse.daily.time.map((date, index) => ({
+				date,
+				day: {
+					condition: describeWeather(jsonResponse.daily.weathercode[index]),
+					maxtemp_c: Math.round(jsonResponse.daily.temperature_2m_max[index]),
+					mintemp_c: Math.round(jsonResponse.daily.temperature_2m_min[index])
+				},
+				astro: {
+					sunrise: formatTime(jsonResponse.daily.sunrise[index]),
+					sunset: formatTime(jsonResponse.daily.sunset[index])
+				}
+			}));
+			let location = { name: [place.name, place.admin1, place.country].filter(Boolean).join(', ') };
+			return { ok: true, data: [days, location] };
 		} catch (error) {
 			console.log(error);
+			return { ok: false, message: 'Something went wrong fetching the forecast. Please try again.' };
 		}
 	}
 
@@ -140,13 +146,27 @@ export const ForecastApiCall = () => {
 		});
 
 		$location.innerHTML = `${weatherData[1].name}`;
+		$sectionTitle.style.display = "";
+	}
+
+	const renderError = (message) => {
+		$weather.innerHTML = `<p class="search-message">${message}</p>`;
+		$location.innerHTML = "";
+		$sectionTitle.style.display = "none";
 	}
 
 	// display content on submit
 	const searchWeather = () => {
 		$weather.innerHTML = "";
+		$location.innerHTML = "";
 
-		getForecast().then(weatherData => renderForecast(weatherData)).then(() => {
+		getForecast().then(result => {
+			if (result.ok) {
+				renderForecast(result.data);
+			} else {
+				renderError(result.message);
+			}
+		}).then(() => {
 			$container.style.display = "block";
 			$container.style.opacity = 1;
 			new ForecastPanels();

@@ -10,12 +10,23 @@ class ShapesAnimation {
 
 
 	cloneSvgShapes() {
-		const svg = this.canvas.selectAll("svg");
 		const that = this;
+
+		// a new ShapesAnimation runs on every search; without clearing
+		// clones left over from a previous run, selectAll("svg") below
+		// would re-clone those clones too, growing the canvas
+		// exponentially (30 -> 300 -> 3000+ elements) across repeat searches
+		this.canvas.selectAll("svg").forEach((item) => {
+			if (/-\d+$/.test(item.attr("id") || "")) {
+				item.remove();
+			}
+		});
+
+		const svg = this.canvas.selectAll("svg");
 		let clonedItem;
 		let clonedItemPaths;
-		
-	
+
+
 		svg.forEach((item,index) => {
 			const svgId = item.attr("id");
 
@@ -66,9 +77,15 @@ class ShapesAnimation {
 				paths.animate({strokeOpacity: .5}, 1000, mina.bounce, () => {
 
 					const animateShapes = () => {
+						// once a previous search's clone has been removed
+						// from the DOM (see cloneSvgShapes), stop this loop
+						// instead of animating a detached node forever
+						if (!item.node.isConnected) return;
+
 						item.animate({transform: `T${randomRange(50,850)}, ${randomRange(25,50)}`}, 40000, mina.linear, () => {
+							if (!item.node.isConnected) return;
 							item.animate({transform:`T${bbox.x},${bbox.y}`}, 40000, mina.linear, animateShapes);
-							
+
 						});
 					};
 

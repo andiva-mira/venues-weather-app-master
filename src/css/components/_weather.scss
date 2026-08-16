@@ -158,22 +158,22 @@
 	img {
 		display: block;
 		margin: 10px auto 0;
-		max-width: 100px;
+		max-width: 50px;
 
 		@include mq(medium) {
 			margin: 20px auto 0;
 		}
 
-		@include mqhr(small) {
-			width: 80px;
-			height: 80px;
-		}
+		// @include mqhr(small) {
+		// 	width: 80px;
+		// 	height: 80px;
+		// }
 
 
-		@include mqlhr(small) {
-			width: 80px;
-			height: 80px;
-		}
+		// @include mqlhr(small) {
+		// 	width: 80px;
+		// 	height: 80px;
+		// }
 	}
 
 	.weathericon {

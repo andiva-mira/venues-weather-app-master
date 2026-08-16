@@ -708,6 +708,79 @@ form #city:focus {
 .btn.btn-expand:hover::after {
   animation: sonarEffect2 1.3s cubic-bezier(0.04, 0.47, 0.64, 0.96) 0.4s;
 }
+.btn.btn-close {
+  background-color: rgba(255, 255, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  position: fixed;
+  top: 50px;
+  right: 0px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50% 0 0 50%;
+  transform: translate3d(100%, 0, 0);
+  transition: opacity 0.6s, background-color 0.3s ease-out, transform 0.6s ease-out;
+  z-index: 99;
+}
+@media (min-width: 992px) {
+  .btn.btn-close {
+    top: 50%;
+    width: 60px;
+    height: 60px;
+    margin-top: -30px;
+  }
+}
+@media (min-width: 768px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) and (orientation: portrait) {
+  .btn.btn-close {
+    width: 120px;
+    height: 120px;
+  }
+}
+@media (min-width: 768px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+  .btn.btn-close {
+    width: 120px;
+    height: 120px;
+  }
+}
+.btn.btn-close span {
+  display: block;
+  color: #fff;
+  font-size: 28px;
+  line-height: 1;
+  transform: scale3d(1, 1, 1);
+  transition: transform 0.6s ease-out;
+}
+@media (min-width: 992px) {
+  .btn.btn-close span {
+    font-size: 36px;
+  }
+}
+@media (min-width: 768px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) and (orientation: portrait) {
+  .btn.btn-close span {
+    font-size: 64px;
+  }
+}
+@media (min-width: 768px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+  .btn.btn-close span {
+    font-size: 64px;
+  }
+}
+.btn.btn-close::after {
+  border-radius: 50% 0 0 50%;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+}
+.btn.btn-close:hover {
+  background-color: #B21551;
+  transform: scale(0.97) translate3d(0, 0, 0);
+}
+.btn.btn-close:hover span {
+  transform: scale3d(0.8, 0.8, 0.8);
+}
+.btn.btn-close:hover::after {
+  animation: sonarEffect2 1.3s cubic-bezier(0.04, 0.47, 0.64, 0.96) 0.4s;
+}
 
 @keyframes sonarEffect {
   0% {
@@ -856,6 +929,10 @@ form #city:focus {
   transform: translate3d(0, 0, 0);
   transition: all 0.8s linear 0.8s;
 }
+.content.is-content-visible .btn-close {
+  transform: translate3d(0, 0, 0);
+  transition: all 0.8s linear 0.8s;
+}
 .content.is-content-visible .content-left {
   transform: scale(1);
 }
@@ -977,6 +1054,12 @@ form #city:focus {
 }
 .content p {
   font-style: italic;
+}
+.content .search-message {
+  width: 100%;
+  max-width: 320px;
+  margin: 60px auto;
+  padding: 0 20px;
 }
 .content svg {
   display: block;
@@ -1117,123 +1200,123 @@ form #city:focus {
 }
 .content #contentRightCanvas .cloud--1 {
   position: absolute;
-  top: 41%;
-  left: 4%;
+  top: 32%;
+  left: 61%;
 }
 .content #contentRightCanvas .cloud--2 {
   position: absolute;
-  top: 6%;
-  left: 63%;
+  top: 79%;
+  left: 71%;
 }
 .content #contentRightCanvas .cloud--3 {
   position: absolute;
-  top: 69%;
-  left: 30%;
+  top: 31%;
+  left: 70%;
 }
 .content #contentRightCanvas .cloud--4 {
   position: absolute;
-  top: 55%;
-  left: 21%;
+  top: 42%;
+  left: 72%;
 }
 .content #contentRightCanvas .cloud--5 {
   position: absolute;
-  top: 17%;
-  left: 24%;
+  top: 87%;
+  left: 42%;
 }
 .content #contentRightCanvas .cloud--6 {
   position: absolute;
-  top: 88%;
-  left: 41%;
+  top: 89%;
+  left: 19%;
 }
 .content #contentRightCanvas .cloud--7 {
   position: absolute;
-  top: 63%;
-  left: 68%;
+  top: 19%;
+  left: 62%;
 }
 .content #contentRightCanvas .cloud--8 {
   position: absolute;
-  top: 69%;
-  left: 55%;
+  top: 24%;
+  left: 77%;
 }
 .content #contentRightCanvas .cloud-pair--1 {
   position: absolute;
-  top: 44%;
-  left: 29%;
+  top: 17%;
+  left: 10%;
 }
 .content #contentRightCanvas .cloud-pair--2 {
   position: absolute;
-  top: 70%;
-  left: 56%;
+  top: 78%;
+  left: 74%;
 }
 .content #contentRightCanvas .cloud-pair--3 {
   position: absolute;
-  top: 38%;
-  left: 19%;
+  top: 28%;
+  left: 57%;
 }
 .content #contentRightCanvas .cloud-pair--4 {
   position: absolute;
-  top: 37%;
-  left: 36%;
+  top: 82%;
+  left: 57%;
 }
 .content #contentRightCanvas .cloud-pair--5 {
   position: absolute;
-  top: 12%;
-  left: 19%;
+  top: 81%;
+  left: 72%;
 }
 .content #contentRightCanvas .cloud-pair--6 {
   position: absolute;
-  top: 89%;
-  left: 32%;
+  top: 82%;
+  left: 24%;
 }
 .content #contentRightCanvas .cloud-pair--7 {
   position: absolute;
-  top: 81%;
-  left: 52%;
+  top: 49%;
+  left: 54%;
 }
 .content #contentRightCanvas .cloud-pair--8 {
   position: absolute;
-  top: 56%;
-  left: 23%;
+  top: 29%;
+  left: 39%;
 }
 .content #contentRightCanvas .air-balloon--1 {
   position: absolute;
-  top: 51%;
-  left: 66%;
+  top: 6%;
+  left: 59%;
 }
 .content #contentRightCanvas .air-balloon--2 {
   position: absolute;
-  top: 64%;
-  left: 72%;
+  top: 43%;
+  left: 56%;
 }
 .content #contentRightCanvas .air-balloon--3 {
   position: absolute;
-  top: 63%;
-  left: 56%;
+  top: 39%;
+  left: 13%;
 }
 .content #contentRightCanvas .air-balloon--4 {
   position: absolute;
-  top: 84%;
-  left: 58%;
+  top: 47%;
+  left: 66%;
 }
 .content #contentRightCanvas .air-balloon--5 {
   position: absolute;
-  top: 46%;
-  left: 25%;
+  top: 67%;
+  left: 47%;
 }
 .content #contentRightCanvas .air-balloon--6 {
   position: absolute;
-  top: 45%;
-  left: 27%;
+  top: 49%;
+  left: 53%;
 }
 .content #contentRightCanvas .air-balloon--7 {
   position: absolute;
-  top: 34%;
-  left: 45%;
+  top: 39%;
+  left: 73%;
 }
 .content #contentRightCanvas .air-balloon--8 {
   position: absolute;
-  top: 64%;
-  left: 65%;
+  top: 28%;
+  left: 52%;
 }
 @media (min-width: 768px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) and (orientation: portrait) {
   .content #contentRightCanvas .cloud--1 {
@@ -1535,123 +1618,123 @@ form #city:focus {
 }
 .content #contentLeftCanvas .cloud--1 {
   position: absolute;
-  top: 75%;
-  left: 10%;
+  top: 20%;
+  left: 43%;
 }
 .content #contentLeftCanvas .cloud--2 {
   position: absolute;
-  top: 48%;
-  left: 52%;
+  top: 39%;
+  left: 55%;
 }
 .content #contentLeftCanvas .cloud--3 {
   position: absolute;
-  top: 56%;
-  left: 75%;
+  top: 83%;
+  left: 50%;
 }
 .content #contentLeftCanvas .cloud--4 {
   position: absolute;
-  top: 50%;
-  left: 29%;
+  top: 65%;
+  left: 49%;
 }
 .content #contentLeftCanvas .cloud--5 {
   position: absolute;
-  top: 85%;
-  left: 30%;
+  top: 44%;
+  left: 35%;
 }
 .content #contentLeftCanvas .cloud--6 {
   position: absolute;
-  top: 55%;
-  left: 48%;
+  top: 85%;
+  left: 74%;
 }
 .content #contentLeftCanvas .cloud--7 {
   position: absolute;
-  top: 65%;
-  left: 64%;
+  top: 86%;
+  left: 32%;
 }
 .content #contentLeftCanvas .cloud--8 {
   position: absolute;
-  top: 65%;
-  left: 79%;
+  top: 70%;
+  left: 74%;
 }
 .content #contentLeftCanvas .cloud-pair--1 {
   position: absolute;
-  top: 53%;
-  left: 47%;
+  top: 31%;
+  left: 45%;
 }
 .content #contentLeftCanvas .cloud-pair--2 {
   position: absolute;
-  top: 12%;
-  left: 64%;
+  top: 5%;
+  left: 41%;
 }
 .content #contentLeftCanvas .cloud-pair--3 {
   position: absolute;
-  top: 40%;
-  left: 55%;
+  top: 64%;
+  left: 40%;
 }
 .content #contentLeftCanvas .cloud-pair--4 {
   position: absolute;
-  top: 12%;
+  top: 64%;
   left: 29%;
 }
 .content #contentLeftCanvas .cloud-pair--5 {
   position: absolute;
-  top: 42%;
-  left: 80%;
+  top: 79%;
+  left: 44%;
 }
 .content #contentLeftCanvas .cloud-pair--6 {
   position: absolute;
-  top: 23%;
-  left: 42%;
+  top: 90%;
+  left: 14%;
 }
 .content #contentLeftCanvas .cloud-pair--7 {
   position: absolute;
-  top: 29%;
-  left: 39%;
+  top: 17%;
+  left: 16%;
 }
 .content #contentLeftCanvas .cloud-pair--8 {
   position: absolute;
-  top: 54%;
-  left: 28%;
+  top: 22%;
+  left: 61%;
 }
 .content #contentLeftCanvas .air-balloon--1 {
   position: absolute;
-  top: 31%;
-  left: 24%;
+  top: 62%;
+  left: 58%;
 }
 .content #contentLeftCanvas .air-balloon--2 {
   position: absolute;
-  top: 53%;
-  left: 34%;
+  top: 79%;
+  left: 8%;
 }
 .content #contentLeftCanvas .air-balloon--3 {
   position: absolute;
-  top: 66%;
-  left: 17%;
+  top: 50%;
+  left: 36%;
 }
 .content #contentLeftCanvas .air-balloon--4 {
   position: absolute;
-  top: 33%;
+  top: 17%;
   left: 46%;
 }
 .content #contentLeftCanvas .air-balloon--5 {
   position: absolute;
-  top: 80%;
-  left: 66%;
+  top: 74%;
+  left: 41%;
 }
 .content #contentLeftCanvas .air-balloon--6 {
   position: absolute;
-  top: 18%;
-  left: 39%;
+  top: 28%;
+  left: 29%;
 }
 .content #contentLeftCanvas .air-balloon--7 {
   position: absolute;
-  top: 71%;
-  left: 29%;
+  top: 92%;
+  left: 30%;
 }
 .content #contentLeftCanvas .air-balloon--8 {
   position: absolute;
-  top: 39%;
-  left: 70%;
+  top: 73%;
+  left: 21%;
 }
 @media (min-width: 768px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) and (orientation: portrait) {
   .content #contentLeftCanvas .cloud--1 {
@@ -1850,6 +1933,9 @@ form #city:focus {
   }
 }
 
+.sectiontitle {
+  padding-top: 50px;
+}
 .sectiontitle h2 {
   font-family: "Montserrat", sans-serif;
   font-size: 1.5rem;
@@ -1926,8 +2012,8 @@ form #city:focus {
   margin: 10px auto;
   perspective: 500px;
   position: relative;
-  width: 220px;
-  height: 150px;
+  width: 280px;
+  height: 170px;
 }
 @media (min-width: 480px) {
   .venue-container {
@@ -1963,8 +2049,8 @@ form #city:focus {
   cursor: pointer;
   position: absolute;
   transform-style: preserve-3d;
-  width: 220px;
-  height: 150px;
+  width: 280px;
+  height: 170px;
 }
 @media (min-width: 480px) {
   .venue {
@@ -2008,8 +2094,8 @@ form #city:focus {
   text-align: center;
   transition: all 0.8s cubic-bezier(0, 0.24, 0.68, 0.98);
   clip-path: polygon(0% 7%, 7% 7%, 7% 0%, 93% 0%, 93% 7%, 100% 7%, 100% 93%, 93% 93%, 93% 100%, 7% 100%, 7% 93%, 0% 93%);
-  width: 220px;
-  height: 150px;
+  width: 280px;
+  height: 170px;
 }
 @media (min-width: 480px) {
   .venue-face {
@@ -2254,23 +2340,11 @@ form #city:focus {
 .weather img {
   display: block;
   margin: 10px auto 0;
-  max-width: 100px;
+  max-width: 50px;
 }
 @media (min-width: 992px) {
   .weather img {
     margin: 20px auto 0;
-  }
-}
-@media (min-width: 768px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) and (orientation: portrait) {
-  .weather img {
-    width: 80px;
-    height: 80px;
-  }
-}
-@media (min-width: 768px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
-  .weather img {
-    width: 80px;
-    height: 80px;
   }
 }
 .weather .weathericon {

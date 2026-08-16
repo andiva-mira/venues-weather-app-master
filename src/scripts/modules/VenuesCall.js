@@ -14,7 +14,8 @@ export function VenuesApiCall() {
 	const $destination = document.getElementById('destination');
 	const $container = document.querySelector('.container');
 	const $venues = document.getElementById('venues');
-	
+	const $sectionTitle = document.querySelector('.content-right-inner .sectiontitle');
+
 	// get date
 	function getDate() {
 		var now = new Date();
@@ -27,23 +28,32 @@ export function VenuesApiCall() {
 	date = date.slice(0,10);
 
 
-	// AJAX function
+	// AJAX function - resolves to { ok: true, data } or { ok: false, message }
 	async function getVenues() {
-		const city = $input.value;
-		const urlToFetch = `${url}${city}&limit=8&client_id=${clientId}&client_secret=${clientSecret}&v=${date}`;
+		const city = $input.value.trim();
+
+		if (!city) {
+			return { ok: false, message: 'Please enter a location to search.' };
+		}
+
+		const urlToFetch = `${url}${encodeURIComponent(city)}&limit=8&client_id=${clientId}&client_secret=${clientSecret}&v=${date}`;
 
 		try {
 			let response = await fetch(urlToFetch);
-			if (response.ok) {
-				let jsonResponse = await response.json();
-				console.log(jsonResponse);
-				let venues = jsonResponse.response.groups[0].items.map(venueItem => venueItem.venue);
-				console.log(venues);
-				return venues;
-			} 
-			throw new Error('Request failed!');
+			if (!response.ok) throw new Error('Request failed!');
+
+			let jsonResponse = await response.json();
+			let groups = jsonResponse.response && jsonResponse.response.groups;
+			let venues = (groups && groups[0] && groups[0].items) ? groups[0].items.map(venueItem => venueItem.venue) : [];
+
+			if (!venues.length) {
+				return { ok: false, message: `We couldn't find any attractions for "${city}". Please check the spelling and try again.` };
+			}
+
+			return { ok: true, data: venues };
 		} catch (error) {
 			console.log(error);
+			return { ok: false, message: 'Something went wrong fetching attractions. Please try again.' };
 		}
 	}
 
@@ -78,14 +88,26 @@ export function VenuesApiCall() {
 		});
 
 		$destination.innerHTML = `${venues[0].location.city}`;
+		$sectionTitle.style.display = "";
 	}
 
+	function renderError(message) {
+		$venues.innerHTML = `<p class="search-message">${message}</p>`;
+		$destination.innerHTML = "";
+		$sectionTitle.style.display = "none";
+	}
 
 	function searchVenue() {
 		$venues.innerHTML = "";
 		$destination.innerHTML = ' ';
 
-		getVenues().then(venues => renderVenues(venues)).then(() => {
+		getVenues().then(result => {
+			if (result.ok) {
+				renderVenues(result.data);
+			} else {
+				renderError(result.message);
+			}
+		}).then(() => {
 			$container.style.display = "block";
 			$container.style.opacity = 1;
 			const venuesHeight = $venues.offsetHeight;
