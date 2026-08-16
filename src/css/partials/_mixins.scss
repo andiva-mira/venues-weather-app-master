@@ -1,0 +1,145 @@
+@mixin pseudo($content: " ", $top:0, $left:0, $width: 100%, $height: 100%) {
+    content: $content;
+    display: block;
+    position: absolute;
+    top: $top;
+    left: $left;
+    width: $width;
+    height: $height;
+}
+
+// regular
+@mixin mq($breakpoint) { 
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (min-width: #{map-get($breakpoints, $breakpoint)})   {
+      @content;
+    }
+  }
+  @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. " + "Please make sure it is defined in `$breakpoints` map.";
+  }
+}
+
+// regular landscape and max-height
+@mixin mql($height) { 
+  @if map-has-key($heights, $height) {
+    @media (max-height: #{map-get($heights, $height)}) and (orientation: landscape) {
+      @content;
+    }
+  }
+  @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$height}`. " + "Please make sure it is defined in `$breakpoints` map.";
+  }
+}
+
+
+// hi res portrait
+@mixin mqhr($hrbreakpoint) { 
+  @if map-has-key($hrbreakpoints, $hrbreakpoint) {
+    @media (min-width: #{map-get($hrbreakpoints, $hrbreakpoint)}) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi)  and (orientation: portrait)  {
+      @content;
+    }
+  }
+  @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$hrbreakpoint}`. " + "Please make sure it is defined in `$breakpoints` map.";
+  }
+}
+
+// hi res landscape
+@mixin mqlhr($hrwidth) { 
+  @if map-has-key($hrwidths, $hrwidth) {
+    @media (min-width: #{map-get($hrwidths, $hrwidth)}) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+      @content;
+    }
+  }
+  @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$hrwidth}`. " + "Please make sure it is defined in `$breakpoints` map.";
+  }
+}
+
+@mixin flex-row($justify-content: center, $flex-wrap: nowrap) {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: $flex-wrap;
+  justify-content: $justify-content;
+}
+
+@mixin flex-col($flex-wrap: nowrap,$justify-content: center, $align-items: center ) {
+	display: flex;
+  flex-direction: column;
+	flex-wrap: $flex-wrap;
+	align-items: $align-items;
+  justify-content: $justify-content;
+}
+
+
+@mixin randomShapeSize($className) {
+  $i: 1;
+  @while $i < 9 {
+    .#{$className}--#{$i} { 
+     width: floor(40px + 1.3*$i); 
+     height: floor(40px + 1.3*$i); 
+    }
+
+    $i: $i + 1;
+  }
+}
+
+@mixin randomShapeSize2($className) {
+  $i: 1;
+  @while $i < 9 {
+    .#{$className}--#{$i} { 
+     width: floor(60px + 1.3*$i); 
+     height: floor(60px + 1.3*$i); 
+    }
+
+    $i: $i + 1;
+  }
+}
+
+// random shapes for Hi Res
+@mixin randomShapeSizeHR($className) {
+  $i: 1;
+  @while $i < 9 {
+    .#{$className}--#{$i} { 
+     width: floor(90px + 1.3*$i); 
+     height: floor(90px + 1.3*$i); 
+    }
+
+    $i: $i + 1;
+  }
+}
+
+// random shapes for Hi Res
+@mixin randomShapeSize2HR($className) {
+  $i: 1;
+  @while $i < 9 {
+    .#{$className}--#{$i} { 
+     width: floor(120px + 1.3*$i); 
+     height: floor(120px + 1.3*$i); 
+    }
+
+    $i: $i + 1;
+  }
+}
+
+
+@mixin randomPosition($className) {
+  $i: 1;
+  @while $i < 9 {
+    .#{$className}--#{$i} { 
+      position:absolute;
+     top: 2*$i + random(80) + %; 
+     left: 2*$i + random(70) + %; 
+    }
+
+    $i: $i + 1;
+  }
+}
+
+
+
+
+
+ 
+

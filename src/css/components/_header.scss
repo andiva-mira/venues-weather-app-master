@@ -1,0 +1,14 @@
+header {
+	width: 100%;
+	text-align: center;
+	@include flex-col($justify-content: center);
+	background: linear-gradient(to bottom,$primaryB 0%, $primaryA 100%);
+	overflow: hidden;
+	height: 100vh;
+
+	@include mq(medium) {
+		@include flex-row($justify-content: center);
+
+	}
+
+}

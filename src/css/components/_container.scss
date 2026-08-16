@@ -1,0 +1,30 @@
+.svg-clipped {
+	width: 100vw;
+	height: 100vh;
+	width: 100%;
+	height: 100%;
+	background: rgba(255,255,255,0.5);
+	background: repeating-radial-gradient( circle at 0% 50%, #932e30, #932e30 2px, #783453 0px, #783453 50px);
+	-webkit-clip-path: url(#svgPath);
+	clip-path: url(#svgPath);
+
+	@include mq(medium) {
+		background: repeating-radial-gradient( circle at 0% 100%, #932e30, #932e30 2px, #783453 0px, #783453 100px);
+
+	}
+}
+
+.container {
+	margin: auto;
+	display: none;
+	opacity: 0;
+	position: absolute;
+	top:0;
+	left: 0;
+	width: 100%;
+	min-height: 100vh;
+	overflow: hidden;	
+	transition: opacity .4s ease-out;
+
+}
+

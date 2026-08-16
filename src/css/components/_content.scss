@@ -1,0 +1,319 @@
+.content {
+	background: linear-gradient(to bottom, $primaryA 0%, darken($primaryB, 20%) 100%);
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+
+	@include mq(medium) {
+		background: linear-gradient(to right, $primaryA 0%, darken($primaryB, 20%) 100%);
+		height: 100%;
+	}
+
+
+	&-left {
+		background: linear-gradient(to bottom, #873140 0%, #772838 100%);
+		height: 100%;
+		transform: scale(2.5);
+		position: relative;
+		transition: all .5s cubic-bezier(0, .24, .68, .98);
+		width: 0;
+		position: absolute;
+		top: 0;
+		right: 0;
+
+		@include mq(medium) {
+			background: none;
+			width: 40%;
+		}
+
+		@include mqhr(small) {
+			background: -webkit-linear-gradient(#873140 0%, #772838 100%);
+			background: -o-linear-gradient(#873140 0%, #772838 100%);
+			background: linear-gradient(#873140 0%, #772838 100%);
+			width: 0;
+		}
+		
+		@include mqlhr(small) {
+			background: linear-gradient(#873140 0%, #772838 100%);
+			width: 0;
+		}
+
+
+	}
+
+	&-right {
+		background: linear-gradient(to bottom, #692c4a 0%, #7a2835 100%);
+		height: 100%;
+		transform: scale(2.5);
+		position: relative;
+		transition: all .5s cubic-bezier(0, .24, .68, .98);
+		width: 100%;
+
+		position: absolute;
+		top: 0;
+		left: 0;
+
+		@include mq(medium) {
+			width: 60%;
+			clip-path: ellipse(100% 65% at 0% 50%);
+		}
+
+		@include mqhr(small) {
+			clip-path: none;
+			width: 100%;
+		}
+		
+		@include mqlhr(small) {
+			clip-path: none;
+			width: 100%;
+		}
+
+	}
+
+	&-left-inner {
+		transform: translate3d(100%, 0, 0);
+		opacity: 0;
+		transition: all .5s linear .3s;
+		position: relative;
+	}
+
+	&-right-inner {
+		transform: translate3d(-100%, 0, 0);
+		opacity: 0;
+		height: 100%;
+		transition: all .8s linear .3s;
+		position: relative;
+	}
+	
+
+	&.is-content-visible {
+		.btn-expand {
+			transform: translate3d(0,0,0);
+			transition: all .8s linear .8s;
+		}
+
+		.btn-close {
+			transform: translate3d(0,0,0);
+			transition: all .8s linear .8s;
+		}
+
+		.content-left {
+			transform: scale(1);
+
+		}
+
+		.content-right {    
+			background-color: transparentize($secondaryB, .8);
+			transform: scale(1);
+
+
+			@include mq(medium) {
+				clip-path: ellipse(100% 65% at 0% 50%);
+			}
+
+			@include mqhr(small) {
+			    clip-path: none;
+			}
+
+			@include mqlhr(small) {
+			    clip-path: none;
+			}
+
+		}
+
+		.content-left-inner,
+		.content-right-inner {
+			transform: translate3d(0, 0, 0);
+			opacity: 1;
+		}
+
+	}
+
+	&.content--expanded {
+		.content-right {
+			width: 0%;
+
+			@include mq(medium) {
+				width: 80%;
+				clip-path: ellipse(100% 75% at 0% 50%);
+			}
+
+			@include mqhr(small) {
+			    clip-path: none;
+			}
+
+			@include mqlhr(small) {
+			    clip-path: none;
+			}
+
+		}
+
+		.content-left {
+			width: 100%;
+
+			@include mq(medium) {
+				background: none;
+				width: 20%;
+			}
+
+			@include mqhr(small) {
+				background: linear-gradient(to bottom, #873140 0%, #772838 100%);
+			   width: 100%;
+			}
+
+			@include mqlhr(small) {
+				background: linear-gradient(to bottom, #873140 0%, #772838 100%);
+			   width: 100%;
+			}
+		}
+
+
+	}
+
+	h2 {
+		font-size: 22px;
+		font-weight: 300;
+		line-height: 1.2;
+		padding: 5px;
+		font-family: 'Great Vibes', cursive;
+
+		@include mqhr(small) {
+			font-size: $fontSize * 4;
+		}
+
+		@include mqlhr(small) {
+			font-size: $fontSize * 4;
+		}
+
+		@include mqlhr(lmedium) {
+			font-size: $fontSize * 2;
+		}
+
+
+		@include mqlhr(xlarge) {
+			font-size: $fontSize * 2.7;
+		}
+
+	}
+
+	h3, p, span {
+		color: #eee;
+		font-size: $fontSize;
+		font-weight: 300;
+
+		@include mqhr(small) {
+			font-size: $fontSize * 2.7;
+		}
+
+		@include mqlhr(small) {
+			font-size: $fontSize * 2.7;
+		}
+
+		@include mqlhr(lmedium) {
+			font-size: $fontSize * 1.5;
+		}
+
+
+		@include mqlhr(xlarge) {
+			font-size: $fontSize * 2.7;
+		}
+	}
+
+	p {
+		font-style: italic;
+	}
+
+	svg {
+		display: block;
+		width: 60px;
+		height: 60px;
+
+		@include mqhr(small) {
+			width: 120px;
+			height: 120px;
+		}
+
+		@include mqlhr(small) {
+			width: 120px;
+			height: 120px;
+		}
+	}
+
+	.cloud-pair {
+		width: 120px;
+		height: 120px;
+
+		@include mqhr(small) {
+			width: 240px;
+			height: 240px;
+		}
+
+		@include mqlhr(small) {
+			width: 240px;
+			height: 240px;
+		}
+	}
+
+	#cloud, #cloud-pair, #air-balloon {
+		opacity: 0;
+	}
+
+	#contentRightCanvas  {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		@include randomShapeSize2(cloud);
+		@include randomShapeSize2(cloud-pair);
+		@include randomShapeSize2(air-balloon);
+
+		@include randomPosition(cloud);
+		@include randomPosition(cloud-pair);
+		@include randomPosition(air-balloon);
+
+
+		@include mqhr(small) {
+			@include randomShapeSize2HR(cloud);
+			@include randomShapeSize2HR(cloud-pair);
+			@include randomShapeSize2HR(air-balloon);
+		}
+
+		@include mqlhr(small) {
+			@include randomShapeSize2HR(cloud);
+			@include randomShapeSize2HR(cloud-pair);
+			@include randomShapeSize2HR(air-balloon);
+		}
+
+			
+	}
+
+	#contentLeftCanvas {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		margin-left: -5%;
+		@include randomShapeSize2(cloud);
+		@include randomShapeSize2(cloud-pair);
+		@include randomShapeSize2(air-balloon);
+
+		@include randomPosition(cloud);
+		@include randomPosition(cloud-pair);
+		@include randomPosition(air-balloon);
+
+		@include mqhr(small) {
+			@include randomShapeSize2HR(cloud);
+			@include randomShapeSize2HR(cloud-pair);
+			@include randomShapeSize2HR(air-balloon);
+		}
+
+		@include mqlhr(small) {
+			@include randomShapeSize2HR(cloud);
+			@include randomShapeSize2HR(cloud-pair);
+			@include randomShapeSize2HR(air-balloon);
+		}
+
+	}
+	
+}
+
+

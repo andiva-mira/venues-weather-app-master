@@ -1,0 +1,61 @@
+.attractions {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	width: 100%;
+
+	#canvas {
+		width: 100%;
+		@include flex-row;
+
+
+	}
+
+	@include mq(medium) {
+		width: 50%;
+	}
+
+
+	svg {
+		max-height: calc(100vw * 0.25);	
+
+		@include mqhr(small) {
+		    height: calc(100vw * 0.25);
+    		width: 100vw;
+		}
+
+		@include mqlhr(xsmall) {
+			opacity: .5;
+		}
+
+		@include mq(medium) {
+			height: calc(100vw * 0.10);
+		}
+
+		@include mql(xsmall) {
+			opacity: .5;
+		}
+	}
+
+	#cabins {
+		animation: Rotation 10s linear infinite;
+		transform-origin: 49.8% 47.8%;
+		transform-origin: 11.8% 48%;
+	}
+
+    #blades {
+		animation: Rotation 10s linear infinite;
+		transform-origin: 50% 25%;
+		transform-origin: 50.3% 25.5%;
+    }
+}
+
+@keyframes Rotation {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}

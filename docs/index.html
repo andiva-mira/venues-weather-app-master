@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Venues and Weather App</title>
+<link rel="apple-touch-icon" sizes="57x57" href="favicon-32591cc1797d85f6512b20572799eb12/apple-touch-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="favicon-32591cc1797d85f6512b20572799eb12/apple-touch-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="favicon-32591cc1797d85f6512b20572799eb12/apple-touch-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="favicon-32591cc1797d85f6512b20572799eb12/apple-touch-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="favicon-32591cc1797d85f6512b20572799eb12/apple-touch-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="favicon-32591cc1797d85f6512b20572799eb12/apple-touch-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="favicon-32591cc1797d85f6512b20572799eb12/apple-touch-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="favicon-32591cc1797d85f6512b20572799eb12/apple-touch-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="favicon-32591cc1797d85f6512b20572799eb12/apple-touch-icon-180x180.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="venues-weather-app"><link rel="icon" type="image/png" sizes="32x32" href="favicon-32591cc1797d85f6512b20572799eb12/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="favicon-32591cc1797d85f6512b20572799eb12/favicon-16x16.png"><link rel="shortcut icon" href="favicon-32591cc1797d85f6512b20572799eb12/favicon.ico"><meta name="mobile-web-app-capable" content="yes"><meta name="theme-color" content="#fff"><meta name="application-name" content="venues-weather-app"><link href="styles.6a21c42b06f5980bbf18.css" rel="stylesheet"></head>
+<body>
+	<div class="attractions">
+		<div id="canvas">
+			
+		</div>
+	</div>
+	<header>
+		<div class="hero-bg">
+			<p>
+				<span>
+					Search for local attractions and check the weather! 
+				</span>
+			</p>
+		</div>
+		<div class="hero-content">
+			<h1 class="page-title">Which city are you going to?</h1>
+			<form autocomplete="off">
+				<input type="text" id="city" placeholder="... type a location name">
+				<a id="button" class="btn btn-search" href="#"><span>Search</span></a>
+			</form>
+
+		</div>
+	</header>
+	<div class="container">
+		<div class="content" id="content">
+			<a class="btn btn-expand" href="#"><span id="btnCanvas"></span></a>
+			<div id="contentCanvas"></div>
+			<div class="content-right">
+				<div id="contentRightCanvas"></div>
+				<div class="content-right-inner" >
+					
+					<div class="sectiontitle">
+						<h2><span>Top 8 Attractions in  </span><span id="destination"> </span></h2>
+					</div>
+					<section id="venues"></section>
+				</div>
+			</div>
+			<div class="content-left">
+				<div id="contentLeftCanvas"></div>
+				<div class="content-left-inner">
+					<div class="sectiontitle">
+						<h2><span>7 days forecast for  </span><span id="location"></span></h2>
+					</div>
+					<section id="weather"></section>
+				</div>
+			</div>	</div>
+		<div class="svg-clipped">
+		<svg id="svg-mask" xmlns="http://www.w3.org/2000/svg" width="0" height="0">
+				<defs>
+					<clipPath id="svgPath">
+						<circle class="circle" stroke="#000000" stroke-miterlimit="10" cx="35" cy="56" r="80">
+						</circle>
+					</clipPath>
+				</defs>
+			</svg>
+		</div>
+	</div>
+ <script type="text/javascript" src="main.6a21c42b06f5980bbf18.js"></script></body>
+ </html>
